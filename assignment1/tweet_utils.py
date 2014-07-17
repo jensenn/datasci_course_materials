@@ -4,11 +4,11 @@ import json
 def lines(fp):
     print str(len(fp.readlines()))
     
-def parse_raw_tweet(line):
+def parse_raw_tweet(line, key):
     try:
         json_data = json.loads(line)
-        if "text" in json_data:
-            return json_data["text"]
+        if key in json_data:
+            return json_data[key]
     except ValueError:
         pass
     

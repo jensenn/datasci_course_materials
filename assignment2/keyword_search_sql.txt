@@ -1,0 +1,20 @@
+CREATE TEMP VIEW FreqPlusQuery AS
+SELECT * from Frequency
+UNION
+SELECT 'q' as docid, 'washington' as term, 1 as count 
+UNION
+SELECT 'q' as docid, 'taxes' as term, 1 as count
+UNION 
+SELECT 'q' as docid, 'treasury' as term, 1 as count;
+
+
+SELECT similarity FROM (
+    SELECT docid, SUM(sim) AS similarity FROM (
+        SELECT *, x.count*y.count AS sim
+        FROM FreqPlusQuery x, FreqPlusQuery y
+        WHERE x.term=y.term AND y.docid='q' AND x.docid!='q'
+    ) z
+    GROUP BY z.docid
+)
+ORDER BY similarity DESC, docid ASC
+LIMIT 1;

@@ -1,0 +1,4 @@
+SELECT SUM(x.count*y.count)
+FROM Frequency x, Frequency y
+WHERE x.term=y.term AND x.docid='10080_txt_crude' AND y.docid='17035_txt_earn';
+

@@ -1,0 +1,9 @@
+SELECT count(*) FROM (
+    SELECT * FROM (
+        SELECT docid, term FROM Frequency WHERE term  = "transactions"
+    ) x
+    JOIN (
+        SELECT docid, term FROM Frequency WHERE term  = "world"
+    ) y
+    ON x.docid = y.docid
+) z;

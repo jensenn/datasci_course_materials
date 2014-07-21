@@ -1,0 +1,5 @@
+SELECT value
+FROM (
+    SELECT * FROM A
+) x
+WHERE (row_num == 2) and (col_num == 3);
